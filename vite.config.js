@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/F2e_2022_2week/",
   plugins: [vue()],
   resolve: {
     alias: {
