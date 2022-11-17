@@ -1,30 +1,12 @@
-# f2e-week2
+# f2e- seconed week by 2022
 
-This template should help get you started developing with Vue 3 in Vite.
+![](https://img.shields.io/badge/3.2.41-Vue-brightgreen) 
+![](https://img.shields.io/badge/3.1.8-Vite-green)
 
-## Recommended IDE Setup
+▎設計稿連結：https://www.figma.com/file/sPyo1NZ2zYyUQ0Z7VAj3et/%E5%B0%8F%E8%8F%9C_WEEK2?node-id=20%3A198
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-# F2e_2022_2week
+＊＊尚未完成項目＊＊
+- pdf檔案顯示
+- 簽名檔拖曳至pdf檔案
+- 完成下載
+- ＦＢ＆Ｇoogle登入

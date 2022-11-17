@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap&subset=chinese-traditional");
+
+:root {
+  --primary: #f9b471;
+  --secondary: #51a8bc;
+  --secondary-hover: #419fb5;
+  --tertiary: #bde8f9;
+  --lightgray: #f9f8f6;
+  --midgrey: #eeede8;
+  --midgrey-hover: #e1e0db;
+  --darkgrey: #a5a39c;
+  --lightmain: #fffaf4;
+  --lightmain-hover: #fef4e9;
+  --white: #ffffff;
+  --dark: #4d4c52;
+}
+
+body {
+  min-height: 100vh;
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  font-family: 'Noto Sans TC', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--midgrey);
+  padding: 0;
+  margin: 0;
+}
+
+/* common layout */
+.container{
+  width: 100%;
+  max-width: 960px;
+  margin: auto;
+}
+.d-flex-between{
+
+  display: flex;
+  justify-content: space-between;
+}
+/* common object */
+.sed-link{
+  color: var(--secondary);
+  font-size: 16px;
+  text-decoration: none;
+}
+.sed-link.disabled{
+  color: #E2E1DD;
+}
+.btn-groups{
+  display: flex;
+  gap: 20px;
+}
+.btn-white,
+.btn-green,
+.btn-grey{
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  width: 120px;
+  border-radius: 30px;
+  font-size: 14px;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0px 4px 4px #EEEDE8;
+  cursor: pointer;
+}
+.btn-white{
+  background-color: var(--lightmain);
+  color: var(--secondary);
+}
+.btn-white:hover{
+  background-color: var(--lightmain-hover);
+}
+.btn-green{
+  background-color: var(--secondary);
+  color: #fff;
+}
+.btn-green:hover{
+  background-color: var(--secondary-hover);
+}
+.btn-grey,
+.btn-green.disabled{
+  background-color: var(--midgrey);
+  color: #fff;
+}
+.btn-grey:hover,
+.btn-green.disabled:hover{
+  background-color: var(--midgrey-hover);
+  cursor: not-allowed;
+}
