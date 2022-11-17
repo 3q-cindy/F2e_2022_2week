@@ -3,7 +3,7 @@
 ![](https://img.shields.io/badge/3.2.41-Vue-brightgreen) 
 ![](https://img.shields.io/badge/3.1.8-Vite-green)
 
-▎設計稿連結：![請點我](https://www.figma.com/file/sPyo1NZ2zYyUQ0Z7VAj3et/%E5%B0%8F%E8%8F%9C_WEEK2?node-id=20%3A198)
+▎設計稿連結：[請點我](https://www.figma.com/file/sPyo1NZ2zYyUQ0Z7VAj3et/%E5%B0%8F%E8%8F%9C_WEEK2?node-id=20%3A198) <br>
 ▎DEMO：未完成
 
 
