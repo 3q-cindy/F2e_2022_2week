@@ -4,7 +4,7 @@
 ![](https://img.shields.io/badge/3.1.8-Vite-green)
 
 ▎設計稿連結：[請點我](https://www.figma.com/file/sPyo1NZ2zYyUQ0Z7VAj3et/%E5%B0%8F%E8%8F%9C_WEEK2?node-id=20%3A198) <br>
-▎DEMO：未完成
+▎DEMO：[未完成](https://3q-cindy.github.io/F2e_2022_2week/)
 
 
 
