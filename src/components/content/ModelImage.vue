@@ -2,6 +2,7 @@
 import { ref, reactive } from "vue";
 import { useFileUpdate } from "@/components/component-api/useFileUpdate.js";
 const emits = defineEmits(["imgSelect"]);
+const { setFile, previewMap } = useFileUpdate();
 const props = defineProps({
   imgCancel: {
     type: Function,
@@ -9,18 +10,18 @@ const props = defineProps({
   },
 });
 
-const { setFile, previewMap } = useFileUpdate();
 const inputDOM = ref(null);
 const image_data = reactive({
   time: "",
   data: "",
 });
-const dragging = ref(false);
 
 const fileChange = (e) => {
   setFile(e.target.files);
   image_data.time = Date.parse(new Date());
   image_data.data = previewMap.value[0];
+  console.log(e.target.files)
+  console.log(image_data);
 };
 const clearFile = () => {
   image_data.time = "";

@@ -6,6 +6,10 @@ const props = defineProps({
     type: Number,
     required: true
   },
+  footStep: {
+    type: Function,
+    required: true
+  },
   foor_con: {
     type: Function,
     default: function(){
@@ -26,9 +30,9 @@ const props = defineProps({
       <!---------------->
       <div class="btn-groups" v-if="props.foot_step < 3">
         <RouterLink to="/main" class="btn-white">取消 </RouterLink>
-        <button type="button" v-if="props.foot_step !== 1 && props.foot_step !== 2" 
+        <button type="button" v-if="props.foot_step !== 1 && props.foot_step !== 2" @click="props.footStep(2)"
                 class="btn-green">開啟文件</button>
-        <button type="button" v-if="props.foot_step === 1 || props.foot_step === 2" 
+        <button type="button" v-if="props.foot_step === 1 || props.foot_step === 2"  @click="props.footStep(2)"
                 :class="{'btn-green':true, 'disabled': props.foot_step == 1}">
             創建文件</button>
       </div>

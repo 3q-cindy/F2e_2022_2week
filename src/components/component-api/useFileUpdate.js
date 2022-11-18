@@ -9,7 +9,7 @@ function useImageFilePreview(file) {
 
 // 本地預覽
 function useQueuePreview(fileArr) {
-  // 多檔案表示
+  // 多圖多影片列表
   const previewMap = {};
 
   // 排序索引
@@ -20,7 +20,7 @@ function useQueuePreview(fileArr) {
     idx++;
   }
 
-  return { previewMap };
+  return previewMap;
 }
 
 export function useFileUpdate() {
@@ -36,7 +36,6 @@ export function useFileUpdate() {
   const setFile = async (file = []) => {
     initData();
     previewMap.value = useQueuePreview(file);
-    // console.log(previewMap.value);
   };
 
   return { setFile, previewMap };
