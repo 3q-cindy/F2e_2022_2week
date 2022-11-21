@@ -24,7 +24,6 @@ const props = defineProps({
   },
 });
 const update_canvas = ref(true);
-const update_pdf = reactive(null);
 const dataChangeEvent = (e) => {
   let file = event.target.files[0];
   readPdf(file, "#updatePdf");

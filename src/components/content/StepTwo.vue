@@ -3,7 +3,7 @@ import { ref, reactive, onMounted } from "vue";
 import ModelType from "@/components/content/ModelType.vue";
 import ModelImage from "@/components/content/ModelImage.vue";
 import ModelCanvas from "@/components/content/ModelCanvas.vue";
-import { readPdf } from "@/components/component-api/usePdf.js";
+import { readPdf, readSign } from "@/components/component-api/usePdf.js";
 
 //上船簽名檔案
 const image_data = reactive({});
@@ -15,6 +15,10 @@ const props = defineProps({
   data_current: {
     type: Object,
     // required: true,
+  },
+  foot_step: {
+    type: Number,
+    required: true
   },
 });
 // -------------DELE----------------- //
@@ -66,34 +70,63 @@ const canAdd = (res) => {
   can_model.value = 0;
 };
 //------------------------------------ //
+const selectSign = (img) => {
+  // readSign(img.file, "useSign");
+  readSign(img.file, "usePdf");
+};
 onMounted(() => {
   const file = props.data_current.file;
+   console.log(file)
   readPdf(file, "#usePdf");
-})
-
+});
 </script >
 <template>
   <!-------Delete Model---------->
-  <ModelType v-show="dele_modal" :text="dele_content.text" :funcCancel="dele_content.funcCancel"
-    :funcOk="dele_content.funcOk" />
+  <ModelType
+    v-show="dele_modal"
+    :text="dele_content.text"
+    :funcCancel="dele_content.funcCancel"
+    :funcOk="dele_content.funcOk"
+  />
   <!----------------------------->
-  <ModelImage v-if="img_model === 1" :imgCancel="imgCancel" @imgSelect="imgAdd" />
-  <ModelCanvas v-if="can_model === 1" :canCancel="canCancel" @canSelect="canAdd" />
-
+  <ModelImage
+    v-if="img_model === 1"
+    :imgCancel="imgCancel"
+    @imgSelect="imgAdd"
+  />
+  <ModelCanvas
+    v-if="can_model === 1"
+    :canCancel="canCancel"
+    @canSelect="canAdd"
+  />
   <!----------------------------->
   <div class="full-container">
-    <div class="method-bar">
+    <div v-if="foot_step < 3" class="method-bar open">
       <div class="title-text">
         <h4>文件名稱</h4>
-        <input type="text" placeholder="請輸入文件名稱" v-model="props.data_current.name" />
+        <input
+          type="text"
+          placeholder="請輸入文件名稱"
+          v-model="props.data_current.name"
+        />
       </div>
       <div class="image-area">
         <h4>我的簽名</h4>
-        <div class="image" v-show="image_data !== []" v-for="(img, idx) in image_data" :key="idx">
+        <div
+          class="image"
+          v-show="image_data !== []"
+          v-for="(img, idx) in image_data"
+          :key="idx"
+        >
           <img :src="img.file" alt="簽名" />
           <button type="button" class="dele" @click="deleImage(idx)">
             <img src="@/assets/del_icon.png" alt="刪除" />
           </button>
+          <button
+            type="button"
+            class="select-btn"
+            @click="selectSign(img)"
+          ></button>
         </div>
         <button type="button" class="image ven-icon" @click="canOpen()">
           <span>創建簽名</span>
@@ -107,7 +140,10 @@ onMounted(() => {
     </div>
     <div class="pdf-content">
       <div class="canvas-body">
-        <canvas id="usePdf"></canvas>
+        <!-- <canvas class="parent"> -->
+          <canvas id="useSign" width="200" height="100"></canvas>
+          <canvas id="usePdf"></canvas>
+        <!-- </canvas> -->
       </div>
     </div>
   </div>
@@ -121,18 +157,21 @@ onMounted(() => {
   box-sizing: border-box;
 }
 
-.method-bar {
+.method-bar.open {
   width: 20%;
-  height: calc(100vh - 155px);
   max-width: 400px;
+}
+
+.method-bar {
+  height: calc(100vh - 155px);
   background: #fff;
   color: var(--darkgrey);
   overflow-y: auto;
 }
 
 .pdf-content {
-  width: 80%;
-  min-width: calc(100vw - 400px);
+  width: 100%;
+  /* min-width: calc(100vw - 400px); */
   height: auto;
   overflow-y: auto;
 }
@@ -145,18 +184,22 @@ onMounted(() => {
   width: 70%;
   max-width: 900px;
 }
-
-canvas {
+canvas:not(#useSign) {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 }
-
-* {
-  /* border: 1px solid red; */
+canvas.parent{
+  position: relative;
 }
-
+canvas#useSign {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 200px;
+}
 h4 {
   font-size: 16px;
   margin: 0;
@@ -169,7 +212,7 @@ h4 {
   gap: 10px;
   padding: 15px 25px;
 }
-.image{
+.image {
   cursor: pointer;
 }
 
@@ -206,6 +249,16 @@ h4 {
   height: 60px;
   background: #fff;
   color: var(--darkgrey);
+  overflow: hidden;
+}
+.image .select-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
 }
 
 .image .dele {
@@ -217,16 +270,17 @@ h4 {
   border: none;
   background: transparent;
   cursor: pointer;
+  z-index: 2;
 }
 
-.dele>img {
+.dele > img {
   width: 20px;
   height: 20px;
   margin: 0;
   padding: 0;
 }
 
-.image>img {
+.image > img {
   height: 60px;
 }
 

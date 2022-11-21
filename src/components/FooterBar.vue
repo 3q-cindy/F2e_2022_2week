@@ -1,6 +1,7 @@
 
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import { downloadPdf } from "@/components/component-api/usePdf.js";
 const props = defineProps({
   foot_step: {
     type: Number,
@@ -17,6 +18,9 @@ const props = defineProps({
     }
   }
 });
+const hanelDown = () =>{
+  downloadPdf("usePdf",'test')
+};
 </script>
 
 <template>
@@ -29,17 +33,17 @@ const props = defineProps({
       </div>
       <!---------------->
       <div class="btn-groups" v-if="props.foot_step < 3">
-        <RouterLink to="/main" class="btn-white">取消 </RouterLink>
+        <RouterLink to="/" class="btn-white" >取消 </RouterLink>
         <button type="button" v-if="props.foot_step !== 1 && props.foot_step !== 2" @click="props.footStep(2)"
                 class="btn-green">開啟文件</button>
-        <button type="button" v-if="props.foot_step === 1 || props.foot_step === 2"  @click="props.footStep(2)"
+        <button type="button" v-if="props.foot_step === 1 || props.foot_step === 2"  @click="props.footStep(3)"
                 :class="{'btn-green':true, 'disabled': props.foot_step == 1}">
             創建文件</button>
       </div>
       <div class="btn-groups" v-if="props.foot_step === 3">
-        <RouterLink to="/main" class="btn-white">回首頁</RouterLink>
-        <button type="button" class="btn-white">返回編輯</button>
-        <button type="button" class="btn-green">下載文件</button>
+        <RouterLink to="/" class="btn-white">回首頁</RouterLink>
+        <button type="button" class="btn-white" @click="props.footStep(2)">返回編輯</button>
+        <button type="button" class="btn-green" @click="hanelDown()">下載文件</button>
       </div>
       <!---------------->
     </div>

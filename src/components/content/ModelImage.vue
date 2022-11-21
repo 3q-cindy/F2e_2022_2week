@@ -20,8 +20,8 @@ const fileChange = (e) => {
   setFile(e.target.files);
   image_data.time = Date.parse(new Date());
   image_data.data = previewMap.value[0];
-  console.log(e.target.files)
-  console.log(image_data);
+  // console.log(e.target.files)
+  // console.log(image_data);
 };
 const clearFile = () => {
   image_data.time = "";

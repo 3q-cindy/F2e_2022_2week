@@ -60,6 +60,6 @@ const current_pdf = {};
 </script>
 <template>
   <StepOne v-if="foot_step < 2" :dataChange="dataChange" :dataSelect="dataSelect()" :data_list="data_list" />
-  <StepTwo v-if="foot_step >= 2" :data_current="data_current" />
+  <StepTwo v-if="foot_step >= 2" :data_current="data_current" :foot_step="foot_step" />
   <FooterBar :foot_step="foot_step" :foot_fun="foot_fun" :footStep="footStep" />
 </template>
